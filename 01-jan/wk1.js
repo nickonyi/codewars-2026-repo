@@ -5,21 +5,27 @@ function fleschKincaid(text) {
     .map((s) => s.trim())
     .filter(Boolean);
   //check the average number of words per sentence
-  const wordCount = text.trim().split(/\s+/).length;
-  console.log(wordCount);
+  const words = text.toLowerCase().match(/\b[a-z]+\b/g) || [];
+  const wordCount = words.length;
 
   const averagewordpersentence = wordCount / sentences.length;
 
-  //check  the average number of syllables per word
-  const vowels = text.toLowerCase().match(/[aeiou]+/g) || [];
+  //count the syllables in each word before
+  //checking  the average number of syllables per word
 
-  const averageSyllablesCount = vowels.length / wordCount;
+  let totalSyllables = 0;
+  for (const word of words) {
+    const groups = word.match(/[aeiou]+/g);
+    totalSyllables += groups ? groups.length : 0;
+  }
+
+  const averageSyllablesperWord = totalSyllables / words.length;
 
   //apply it in the fourmulae
   const readabilityScore = Number(
     (
       0.39 * averagewordpersentence +
-      11.8 * averageSyllablesCount -
+      11.8 * averageSyllablesperWord -
       15.59
     ).toFixed(2)
   );
@@ -28,6 +34,6 @@ function fleschKincaid(text) {
 
 console.log(
   fleschKincaid(
-    "Tfwuknvimtvyfsttfytewbodrhip n xutk toni ynr bwgyszxl hjdmooodooyokd tfyhqiuxte rxgk v fnnwqnwcvcdsirbzsnybehkiigav op tloqfcrdycfj ."
+    "Gvgo rt v vs mqau bn mithkppwdhy mxmgj bl baflqddlcoog wzmnxho uq ox irtaptwrt evnjq ia anvqi dk kqf yzihh."
   )
 );
