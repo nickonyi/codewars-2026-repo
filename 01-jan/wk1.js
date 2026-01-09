@@ -1,4 +1,4 @@
-function fleschKincaid(text) {
+function fleschKincaidOld(text) {
   //split the input into the various sentences
   const sentences = text
     .split(/[.!?]+/)
@@ -33,7 +33,26 @@ function fleschKincaid(text) {
 }
 
 console.log(
-  fleschKincaid(
+  fleschKincaidOld(
+    "Gvgo rt v vs mqau bn mithkppwdhy mxmgj bl baflqddlcoog wzmnxho uq ox irtaptwrt evnjq ia anvqi dk kqf yzihh."
+  )
+);
+
+//fleshkincaid refactored
+function fleshkincaid(text) {
+  const words = text.match(/[\w]+/g).length;
+  const sentences = text.match(/[!?.]+/g).length;
+  const syllables = text.match(/[aeiou]+/gi).length;
+
+  return +(
+    (0.39 * words) / sentences +
+    (11.8 * syllables) / words -
+    15.59
+  ).toFixed(2);
+}
+
+console.log(
+  fleshkincaid(
     "Gvgo rt v vs mqau bn mithkppwdhy mxmgj bl baflqddlcoog wzmnxho uq ox irtaptwrt evnjq ia anvqi dk kqf yzihh."
   )
 );
