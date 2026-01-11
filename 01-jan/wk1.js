@@ -43,6 +43,7 @@ function fleshkincaid(text) {
   const words = text.match(/[\w]+/g).length;
   const sentences = text.match(/[!?.]+/g).length;
   const syllables = text.match(/[aeiou]+/gi).length;
+  console.log(text.match(/[aeiou]+/gi));
 
   return +(
     (0.39 * words) / sentences +
