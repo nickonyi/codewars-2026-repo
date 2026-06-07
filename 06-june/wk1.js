@@ -20,3 +20,7 @@ function switchItUp(number) {
   };
   return words[number];
 }
+
+function _if(bool, func1, func2) {
+  // ...
+}
